@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow To-Do List - Organize Your Tasks</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="landing-container">
+        <header class="landing-header">
+            <div class="header-content">
+                <h1 class="app-title">Shadow To-Do</h1>
+                <p class="app-subtitle">Organize your tasks, boost your productivity</p>
+            </div>
+        </header>
+
+        <main class="landing-main">
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2>Take Control of Your Tasks</h2>
+                    <p>Shadow To-Do helps you organize your daily tasks, set priorities, and never miss a deadline again.</p>
+                    <div class="cta-buttons">
+                        <a href="/app" class="btn btn-primary">Get Started</a>
+                        <a href="#features" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="task-preview">
+                        <div class="preview-task completed">
+                            <div class="preview-checkbox checked"></div>
+                            <div class="preview-content">
+                                <div class="preview-title">Complete project proposal</div>
+                                <div class="preview-meta">
+                                    <span class="preview-category">Work</span>
+                                    <span class="preview-priority high">High</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-task">
+                            <div class="preview-checkbox"></div>
+                            <div class="preview-content">
+                                <div class="preview-title">Buy groceries for the week</div>
+                                <div class="preview-meta">
+                                    <span class="preview-category">Personal</span>
+                                    <span class="preview-priority medium">Medium</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-task">
+                            <div class="preview-checkbox"></div>
+                            <div class="preview-content">
+                                <div class="preview-title">Morning workout routine</div>
+                                <div class="preview-meta">
+                                    <span class="preview-category">Health</span>
+                                    <span class="preview-priority low">Low</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="features-section">
+                <h2>Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📅</div>
+                        <h3>Recurring Tasks</h3>
+                        <p>Set up daily, weekly, or monthly recurring tasks to automate your routine.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Secure & Private</h3>
+                        <p>Your data is encrypted and stored securely. We never share your information.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌙</div>
+                        <h3>Dark/Light Theme</h3>
+                        <p>Switch between dark and light modes for comfortable viewing anytime.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Fully Responsive</h3>
+                        <p>Access your tasks from any device - desktop, tablet, or mobile.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section">
+                <h2>Ready to Get Organized?</h2>
+                <p>Join thousands of users who have transformed their productivity with Shadow To-Do.</p>
+                <a href="/app" class="btn btn-primary">Start For Free</a>
+            </section>
+        </main>
+
+        <footer class="landing-footer">
+            <p>&copy; 2023 Shadow To-Do. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality for landing page
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.createElement('button');
+            themeToggle.className = 'theme-toggle';
+            themeToggle.innerHTML = '🌙';
+            themeToggle.title = 'Toggle theme';
+            
+            document.querySelector('.header-content').appendChild(themeToggle);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                themeToggle.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+        });
+    </script>
+</body>
+</html>

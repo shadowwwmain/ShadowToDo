@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Auth Section -->
+        <div id="auth-section" class="auth-section">
+            <div class="auth-container">
+                <h1 class="app-title">Shadow To-Do</h1>
+                
+                <div class="auth-tabs">
+                    <button id="login-tab" class="tab active">Login</button>
+                    <button id="signup-tab" class="tab">Sign Up</button>
+                </div>
+                
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Login</span>
+                    </button>
+                </form>
+                
+                <form id="signup-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="signup-username">Username</label>
+                        <input type="text" id="signup-username" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Sign Up</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Todo Section -->
+        <div id="todo-section" class="todo-section hidden">
+            <header class="todo-header">
+                <div class="header-left">
+                    <h1 class="app-title">Shadow To-Do</h1>
+                </div>
+                <div class="header-center">
+                    <div class="greeting">
+                        <span id="greeting-text">Good day,</span>
+                        <span id="user-display" class="user-name"></span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="profile-container">
+                        <button id="profile-btn" class="profile-btn" title="Profile">
+                            <span class="profile-initials" id="profile-initials"></span>
+                        </button>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle" title="Toggle theme">🌙</button>
+                    <button id="logout-btn" class="btn btn-secondary">Logout</button>
+                </div>
+            </header>
+            
+            <div class="todo-container">
+                <form id="todo-form" class="todo-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="todo-title" placeholder="What needs to be done?" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-dropdown">
+                                <div class="dropdown-selected" id="todo-category-selected">
+                                    <span>General</span>
+                                </div>
+                                <div class="dropdown-options" id="todo-category-options">
+                                    <div class="dropdown-option" data-value="General">
+                                        <span>General</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="Work">
+                                        <span>Work</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="Personal">
+                                        <span>Personal</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="Shopping">
+                                        <span>Shopping</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="Health">
+                                        <span>Health</span>
+                                    </div>
+                                </div>
+                                <select id="todo-category" class="todo-category-select" style="display: none;">
+                                    <option value="General">General</option>
+                                    <option value="Work">Work</option>
+                                    <option value="Personal">Personal</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Health">Health</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="todo-description" placeholder="Add details (optional)"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="todo-due-date">Due Date</label>
+                            <input type="date" id="todo-due-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="todo-priority">Priority</label>
+                            <div class="custom-dropdown">
+                                <div class="dropdown-selected" id="todo-priority-selected">
+                                    <span>Medium</span>
+                                </div>
+                                <div class="dropdown-options" id="todo-priority-options">
+                                    <div class="dropdown-option" data-value="low">
+                                        <div class="dropdown-option-icon" style="background-color: rgba(74, 222, 128, 0.2); color: var(--success);">⬇</div>
+                                        <span>Low</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="medium">
+                                        <div class="dropdown-option-icon" style="background-color: rgba(249, 199, 79, 0.2); color: var(--warning);">➡</div>
+                                        <span>Medium</span>
+                                    </div>
+                                    <div class="dropdown-option" data-value="high">
+                                        <div class="dropdown-option-icon" style="background-color: rgba(255, 77, 109, 0.2); color: var(--error);">⬆</div>
+                                        <span>High</span>
+                                    </div>
+                                </div>
+                                <select id="todo-priority" style="display: none;">
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="todo-recurring">
+                            <span class="checkbox-custom"></span>
+                            <span>Recurring Task</span>
+                        </label>
+                    </div>
+                    <div class="form-group" id="recurrence-pattern-group" style="display: none;">
+                        <label for="todo-recurrence-pattern">Recurrence Pattern</label>
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" id="todo-recurrence-pattern-selected">
+                                <span>Daily</span>
+                            </div>
+                            <div class="dropdown-options" id="todo-recurrence-pattern-options">
+                                <div class="dropdown-option" data-value="daily">
+                                    <span>Daily</span>
+                                </div>
+                                <div class="dropdown-option" data-value="weekly">
+                                    <span>Weekly</span>
+                                </div>
+                                <div class="dropdown-option" data-value="monthly">
+                                    <span>Monthly</span>
+                                </div>
+                            </div>
+                            <select id="todo-recurrence-pattern" style="display: none;">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Add Task</span>
+                    </button>
+                </form>
+                
+                <div class="todo-controls">
+                    <div class="search-container">
+                        <input type="text" id="search-input" placeholder="Search tasks...">
+                        <button id="search-btn" class="search-btn">🔍</button>
+                    </div>
+                    
+                    <div class="controls-right">
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" id="category-filter-selected">
+                                <span>All Categories</span>
+                            </div>
+                            <div class="dropdown-options" id="category-filter-options">
+                                <div class="dropdown-option" data-value="">
+                                    <span>All Categories</span>
+                                </div>
+                            </div>
+                            <select id="category-filter" class="filter-select" style="display: none;">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                        
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" id="sort-by-selected">
+                                <span>Date Created</span>
+                            </div>
+                            <div class="dropdown-options" id="sort-by-options">
+                                <div class="dropdown-option" data-value="createdAt">
+                                    <span>Date Created</span>
+                                </div>
+                                <div class="dropdown-option" data-value="dueDate">
+                                    <span>Due Date</span>
+                                </div>
+                                <div class="dropdown-option" data-value="priority">
+                                    <span>Priority</span>
+                                </div>
+                                <div class="dropdown-option" data-value="title">
+                                    <span>Title</span>
+                                </div>
+                            </div>
+                            <select id="sort-by" class="filter-select" style="display: none;">
+                                <option value="createdAt">Date Created</option>
+                                <option value="dueDate">Due Date</option>
+                                <option value="priority">Priority</option>
+                                <option value="title">Title</option>
+                            </select>
+                        </div>
+                        
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" id="sort-order-selected">
+                                <span>Newest First</span>
+                            </div>
+                            <div class="dropdown-options" id="sort-order-options">
+                                <div class="dropdown-option" data-value="desc">
+                                    <span>Newest First</span>
+                                </div>
+                                <div class="dropdown-option" data-value="asc">
+                                    <span>Oldest First</span>
+                                </div>
+                            </div>
+                            <select id="sort-order" class="filter-select" style="display: none;">
+                                <option value="desc">Newest First</option>
+                                <option value="asc">Oldest First</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filters">
+                    <button id="all-filter" class="filter-btn active">All</button>
+                    <button id="active-filter" class="filter-btn">Active</button>
+                    <button id="completed-filter" class="filter-btn">Completed</button>
+                    <button id="overdue-filter" class="filter-btn">Overdue</button>
+                </div>
+                
+                <ul id="todo-list" class="todo-list">
+                    <!-- Todos will be populated here -->
+                </ul>
+                
+                <div class="todo-stats">
+                    <div class="completion-progress">
+                        <div class="progress-header">
+                            <span class="progress-label">Task Completion</span>
+                            <span id="completion-percent" class="progress-percent">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon total-icon">📋</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Total Tasks</span>
+                                <span id="total-count" class="stat-value">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon active-icon">⏳</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Active</span>
+                                <span id="active-count" class="stat-value">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon completed-icon">✅</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Completed</span>
+                                <span id="completed-count" class="stat-value">0</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon overdue-icon">⚠️</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Overdue</span>
+                                <span id="overdue-count" class="stat-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="clear-completed" class="btn btn-secondary">
+                        <span>Clear Completed</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal hidden">
+        <div class="modal-content profile-modal-content">
+            <div class="modal-header">
+                <h2>Profile</h2>
+                <span class="close-modal" id="close-profile-modal">&times;</span>
+            </div>
+            <div class="profile-content">
+                <div class="profile-header">
+                    <div class="profile-avatar-large">
+                        <span class="profile-initials-large" id="profile-initials-large"></span>
+                    </div>
+                    <div class="profile-info">
+                        <h3 id="profile-username"></h3>
+                        <p id="profile-email"></p>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Member Since</span>
+                        <span class="detail-value" id="member-since"></span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Total Tasks</span>
+                        <span class="detail-value" id="profile-total-tasks">0</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Completed Tasks</span>
+                        <span class="detail-value" id="profile-completed-tasks">0</span>
+                    </div>
+                    <div class="profile-detail-item">
+                        <span class="detail-label">Preferred Theme</span>
+                        <span class="detail-value" id="preferred-theme">Dark</span>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button id="save-preferences" class="btn btn-primary">Save Preferences</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Todo Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="edit-todo-form">
+                <input type="hidden" id="edit-todo-id">
+                <div class="form-group">
+                    <label for="edit-todo-title">Title</label>
+                    <input type="text" id="edit-todo-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-todo-description">Description</label>
+                    <textarea id="edit-todo-description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-todo-due-date">Due Date</label>
+                        <input type="date" id="edit-todo-due-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-todo-priority">Priority</label>
+                        <div class="custom-dropdown">
+                            <div class="dropdown-selected" id="edit-todo-priority-selected">
+                                <span>Medium</span>
+                            </div>
+                            <div class="dropdown-options" id="edit-todo-priority-options">
+                                <div class="dropdown-option" data-value="low">
+                                    <div class="dropdown-option-icon" style="background-color: rgba(74, 222, 128, 0.2); color: var(--success);">⬇</div>
+                                    <span>Low</span>
+                                </div>
+                                <div class="dropdown-option" data-value="medium">
+                                    <div class="dropdown-option-icon" style="background-color: rgba(249, 199, 79, 0.2); color: var(--warning);">➡</div>
+                                    <span>Medium</span>
+                                </div>
+                                <div class="dropdown-option" data-value="high">
+                                    <div class="dropdown-option-icon" style="background-color: rgba(255, 77, 109, 0.2); color: var(--error);">⬆</div>
+                                    <span>High</span>
+                                </div>
+                            </div>
+                            <select id="edit-todo-priority" style="display: none;">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit-todo-category">Category</label>
+                    <div class="custom-dropdown">
+                        <div class="dropdown-selected" id="edit-todo-category-selected">
+                            <span>General</span>
+                        </div>
+                        <div class="dropdown-options" id="edit-todo-category-options">
+                            <div class="dropdown-option" data-value="General">
+                                <span>General</span>
+                            </div>
+                            <div class="dropdown-option" data-value="Work">
+                                <span>Work</span>
+                            </div>
+                            <div class="dropdown-option" data-value="Personal">
+                                <span>Personal</span>
+                            </div>
+                            <div class="dropdown-option" data-value="Shopping">
+                                <span>Shopping</span>
+                            </div>
+                            <div class="dropdown-option" data-value="Health">
+                                <span>Health</span>
+                            </div>
+                        </div>
+                        <select id="edit-todo-category" style="display: none;">
+                            <option value="General">General</option>
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Health">Health</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="edit-todo-recurring">
+                        <span class="checkbox-custom"></span>
+                        <span>Recurring Task</span>
+                    </label>
+                </div>
+                <div class="form-group" id="edit-recurrence-pattern-group" style="display: none;">
+                    <label for="edit-todo-recurrence-pattern">Recurrence Pattern</label>
+                    <div class="custom-dropdown">
+                        <div class="dropdown-selected" id="edit-todo-recurrence-pattern-selected">
+                            <span>Daily</span>
+                        </div>
+                        <div class="dropdown-options" id="edit-todo-recurrence-pattern-options">
+                            <div class="dropdown-option" data-value="daily">
+                                <span>Daily</span>
+                            </div>
+                            <div class="dropdown-option" data-value="weekly">
+                                <span>Weekly</span>
+                            </div>
+                            <div class="dropdown-option" data-value="monthly">
+                                <span>Monthly</span>
+                            </div>
+                        </div>
+                        <select id="edit-todo-recurrence-pattern" style="display: none;">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-edit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
